@@ -1,0 +1,1 @@
+#include "../adxl362.h"
