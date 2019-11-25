@@ -37,7 +37,6 @@ void DisplayOLEDupdateTemp(float tempCelsius)
 
     memset(tempBuffer, 0, sizeof(tempBuffer));
 
-
     if(_tempInCelsius)
     {
         snprintf(tempBuffer, sizeof(tempBuffer), "%.1f C", tempCelsius);

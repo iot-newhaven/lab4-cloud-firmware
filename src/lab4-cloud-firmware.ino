@@ -21,8 +21,8 @@ SYSTEM_MODE(SEMI_AUTOMATIC);
 
 #define SYSTEM_DISPLAY_UPDATE_MS        (5000)
 
-#define WIFI_AP_NAME    "Ramirez"
-#define WIFI_AP_PASSW   "rusty2009"
+#define WIFI_AP_NAME    "ececs"
+#define WIFI_AP_PASSW   "buckman203"
 
 typedef enum {
     SYS_STATE_INIT,
