@@ -28,12 +28,16 @@ void DisplayOLEDupdateTemp(float tempCelsius)
 {
     static char tempBuffer[32];
     float tempFahrenheit;
+    int msgPixelWidth;
+    int msgPixelHeight;
+    uint8_t xPos;
+    uint8_t yPos;
     
     oled.clear(PAGE);     // Clear the screen
     
     oled.setFontType(1);  // Set font to type 0
-    
-    oled.setCursor(0, 0); // Set cursor to top-left
+
+    msgPixelHeight = oled.getFontHeight();
 
     memset(tempBuffer, 0, sizeof(tempBuffer));
 
@@ -47,9 +51,17 @@ void DisplayOLEDupdateTemp(float tempCelsius)
 
         snprintf(tempBuffer, sizeof(tempBuffer), "%.1f F", tempFahrenheit);
     }
+
+    msgPixelWidth = strlen(tempBuffer)*oled.getFontWidth();
+
+    yPos = (oled.getLCDHeight() - msgPixelHeight)/2;
+
+    xPos = (oled.getLCDWidth() - msgPixelWidth)/2;
+    
+    oled.setCursor(xPos, yPos); // Set cursor to top-left
     
     oled.print(tempBuffer);
-    
+
     oled.display();
 }
 
