@@ -21,4 +21,6 @@ void NetIoTStop(void);
 
 void NetIoTupdate(void);
 
+void NetIoTnotify(void);
+
 #endif

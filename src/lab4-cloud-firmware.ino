@@ -35,6 +35,8 @@ typedef enum {
 
 static SystemState_t _systemState = SYS_STATE_INIT;
 
+static bool _ButtonPress = false;
+
 // Temperature sensor Init and timer objects
 Timer timerSystemUIupdate(SYSTEM_DISPLAY_UPDATE_MS, SystemUIrefresh);
 
@@ -121,6 +123,12 @@ void SystemStateProc(void)
             break;
 
         case SYS_STATE_CLOUD_READY:
+            if(_ButtonPress)
+            {
+                NetIoTnotify();
+
+                _ButtonPress = false;
+            }
             break;
     }
 
@@ -152,6 +160,8 @@ void setup()
 
     // Start System heartbeat
     timerSysHeartbeat.start();
+
+    System.on(button_click, button_clicked);
 }
 
 // loop() runs over and over again, as quickly as it can execute.
@@ -159,4 +169,12 @@ void loop()
 {
     // The core of your code will likely live here.
     SystemStateProc();
+}
+
+void button_clicked(system_event_t event, int param)
+{
+    int times = system_button_clicks(param);
+    Serial.printlnf("button was clicked %d times", times);
+
+    _ButtonPress = true;
 }

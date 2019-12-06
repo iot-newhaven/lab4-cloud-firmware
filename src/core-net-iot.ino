@@ -87,3 +87,11 @@ void NetIoTupdate(void)
     }
 }
 
+void NetIoTnotify(void)
+{
+    if(Particle.connected())
+    {
+        Particle.publish("temperature", "19 F", PUBLIC);
+    }
+}
+

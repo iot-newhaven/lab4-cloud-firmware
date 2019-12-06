@@ -5,6 +5,8 @@ void NetWifiStart(const char *wifiAPname,
 {
     // Ensure that WiFi module is on
     WiFi.on();
+
+    WiFi.clearCredentials();
    
     // Set up WPA2 access point "My AP" with password "mypassword" and AES cipher
     WiFiCredentials credentials(wifiAPname, WPA2);
@@ -22,8 +24,6 @@ void NetWifiStart(const char *wifiAPname,
 
 void NetWifiStop(void)
 {
-    WiFi.clearCredentials();
- 
     WiFi.off();
 
     delay(1000);
